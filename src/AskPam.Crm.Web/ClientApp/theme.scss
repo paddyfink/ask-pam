@@ -1,0 +1,82 @@
+@import '~@angular/material/theming';
+@import '~@covalent/core/theming/all-theme';
+
+// Plus imports for other components in your app.
+
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$primary: mat-palette($mat-teal, A700);
+$accent: mat-palette($mat-purple, 800, 300, 900);
+$warn: mat-palette($mat-red, A200);
+
+
+// Create the theme object (a Sass map containing all of the palettes).
+$theme: mat-light-theme($primary, $accent, $warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($theme);
+@include covalent-theme($theme);
+
+
+
+
+//---------------------------
+
+
+/* GLODAL STYLES ---------------------------------------------------------------------------- */
+a {
+  text-decoration: none !important;
+  color: mat-color($accent);
+}
+
+
+.secondary {
+  background-color: whitesmoke;
+}
+
+// .ng2-dropdown-menu {
+//     width: auto !important;
+// }
+
+
+// Active top nav
+nav {
+  a {
+      line-height: 4;
+      display: block;
+      &:not(.active) {
+          color: white;
+      }
+      &.active {
+          color: mat-color($accent);
+          border-bottom: 1px solid mat-color($accent);
+      }
+  }
+}
+
+// Active icon color in list nav
+mat-nav-list {
+  [mat-list-item].active {
+      mat-icon[mat-list-avatar] {
+          background-color: mat-color($accent);
+          color: mat-color($accent, default-contrast)
+      }
+      mat-icon[mat-list-icon] {
+          color: mat-color($accent);
+      }
+  }
+}
+
+
+//Toolbar
+
+.app-toolbar  {
+  color: white;
+}

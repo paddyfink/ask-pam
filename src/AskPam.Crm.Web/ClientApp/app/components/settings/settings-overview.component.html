@@ -1,0 +1,113 @@
+﻿<section class="settings-overview">
+    <mat-card>
+        <mat-card-title>Communication Channels</mat-card-title>
+        <!--<mat-card-subtitle>Subtitle</mat-card-subtitle>-->
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <div layout="row" layout-margin flex class="flex-container">
+                <div layout="column" matTooltipPosition="above">
+                    <a [routerLink]="['/settings/email']">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                            <i class="fa fa-envelope  fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                    <span class="icon-text">Email</span>
+                </div>
+                <!-- <div layout="column">
+                    <a [routerLink]="['/settings/widget']">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                            <i class="fa fa-globe  fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                    <span class="icon-text">Widget</span>
+                </div>
+                <div layout="column" disabled matTooltip="Coming soon :)" matTooltipPosition="above">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                        <i class="fa fa-comment  fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="icon-text">SMS</span>
+                </div>
+                <div layout="column" matTooltipPosition="above">
+                    <a [routerLink]="['/settings/facebook']">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                            <i class="fa fa-facebook  fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                    <span class="icon-text">Facebook</span>
+                </div>
+                <div layout="column" disabled matTooltip="Coming soon :)" matTooltipPosition="above">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                        <i class="fa fa-twitter  fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="icon-text">Twitter</span>
+                </div>
+                <div layout="column" disabled matTooltip="Coming soon :)" matTooltipPosition="above">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                        <i class="fa fa-wechat  fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="icon-text">Wechat</span>
+                </div> -->
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>General Settings</mat-card-title>
+        <!--<mat-card-subtitle>Subtitle</mat-card-subtitle>-->
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <div layout="row" layout-margin flex class="flex-container">
+                <div layout="column" disabled matTooltip="Coming soon :)" matTooltipPosition="above">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                        <i class="fa fa-wrench  fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="icon-text">Account</span>
+                </div>
+                <div layout="column">
+                    <a [routerLink]="['/settings/users']">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                            <i class="fa fa-users  fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                    <span class="icon-text">Users</span>
+                </div>
+                <div layout="column">
+                    <a [routerLink]="['/settings/tags']">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                            <i class="fa fa-tags  fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                    <span class="icon-text">Tags</span>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>Artifcial Intelligence</mat-card-title>
+        <!--<mat-card-subtitle>Subtitle</mat-card-subtitle>-->
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <div layout="row" layout-margin flex class="flex-container">
+                <div layout="column">
+                    <a [routerLink]="['/settings/qna-bot']">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                            <i class="fa fa-question-circle  fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                    <span class="icon-text">Q&A Bot</span>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</section>

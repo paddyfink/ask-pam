@@ -1,0 +1,32 @@
+﻿<mat-card>
+    <mat-card-title>Internal Notes</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <ng-template let-note let-i="index" let-last="last" ngFor [ngForOf]="notes">
+            <mat-list>
+                <mat-list-item class="note-item">
+                    <img mat-list-avatar class="user-icon" [src]="note.createdByPicture" [hidden]="!note.createdByPicture" />
+
+                    <h4 matLine>
+                        {{note.createdByFullName}}
+                    </h4>
+                    <p matLine>{{note.createdAt | timeAgo}}</p>
+                </mat-list-item>
+                <pre class="pad-left pad-right push-top-none" >{{note.comment}}</pre>
+            </mat-list>
+            <mat-divider *ngIf="!last"></mat-divider>
+        </ng-template>
+        <form (ngSubmit)="submit(f)" #f="ngForm">
+            <div layout="column" flex>
+                <mat-form-field [style.width]="'100%'">
+                    <textarea autosize matInput [placeholder]="placeHolder" name="comment" [(ngModel)]="comment" required>
+                    </textarea>
+                </mat-form-field>
+                <div layout="row">
+                    <span flex></span>
+                    <button mat-raised-button type="submit" [disabled]="!f.valid" color="accent">Add</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,42 @@
+﻿
+    .boxes {
+        .mat-card-content {
+            text-align: center;
+            color: white;
+            height: 100%;
+        }
+
+        .mat-card-colored {
+            overflow: hidden;
+        }
+
+        .md-subhead {
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+
+
+
+@media only screen and (max-width: 350px) {
+ 
+        .boxes {
+            &[layout="row"] > [flex="25"] {
+                flex: 1 0 100%;
+                max-width: 100%;
+            }
+
+            .text-super {
+                font-size: 40px;
+                margin-right: 15px;
+            }
+
+            .mat-card-colored {
+                .mat-card-content {
+                    display: flex;
+                    flex-direction: row;
+                    text-align: left;
+                }
+            }
+        }
+    }

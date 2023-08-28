@@ -1,0 +1,30 @@
+<!-- <tag-input placeholder="Add tag" *ngIf="!readOnly ;else chipsReadOnly" [(ngModel)]="model" [onlyFromAutocomplete]="true" [displayBy]="'name'" [identifyBy]="'id'"
+    (onAdd)="onAdd($event)" (onRemove)="onRemove($event)">
+    <tag-input-dropdown [showDropdownIfEmpty]="false" [minimumTextLength]="1" [focusFirstElement]="true" [displayBy]="'name'"
+        [identifyBy]="'id'" [autocompleteItems]="tags" [appendToBody]="appendToBody">
+        <ng-template let-item="item" let-index="index">
+            {{ item.fullName }}
+        </ng-template>
+    </tag-input-dropdown>
+</tag-input>
+<ng-template #chipsReadOnly>
+    <mat-chip-list>
+        <mat-chip *ngFor="let tag of model">{{tag.name}}</mat-chip>
+    </mat-chip-list>
+</ng-template> -->
+
+<td-chips placeholder="Add tag" [items]="filteredTags" [(ngModel)]="model" [disabled]="readOnly" (add)="onAdd($event)" (remove)="onRemove($event)"
+    requireMatch *ngIf="!readOnly ;else chipsReadOnly" (inputChange)="filterTagsList($event)">
+    <ng-template td-chip let-chip="chip">
+        {{chip.name}}
+    </ng-template>
+    <ng-template td-autocomplete-option let-option="option">
+        {{option.name}}
+    </ng-template>
+</td-chips>
+
+<ng-template #chipsReadOnly>
+    <mat-chip-list>
+        <mat-chip *ngFor="let tag of model">{{tag.name}}</mat-chip>
+    </mat-chip-list>
+</ng-template>

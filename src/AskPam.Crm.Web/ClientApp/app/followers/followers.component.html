@@ -1,0 +1,38 @@
+<td-chips placeholder="Add follower" [items]="filteredUsers" [ngModel]="followers"  (add)="onFollowerAdded($event)" (remove)="onFollowerRemoved($event)" (inputChange)="filterUsers($event)"
+    requireMatch >
+    <ng-template td-chip let-item="chip">
+            <img [src]="item.picture" class="message-avatar"> {{item.firstName}}
+            
+    </ng-template>
+    <ng-template td-autocomplete-option let-item="option">
+            <img [src]="item.picture" style="width: 26px; height: 26px;
+            border-radius: 50%; vertical-align: -20%;"> {{ item.fullName }}
+    </ng-template>
+</td-chips>
+
+
+<!-- <section class="followers">
+        <tag-input
+            [ngModel]="followers"
+            [onlyFromAutocomplete]="true"
+            [displayBy]="'fullName'"
+            [identifyBy]="'id'"
+            placeholder="+ add follower"
+            secondaryPlaceholder ="add follower"
+            (onAdd)="onFollowerAdded($event)"
+            (onRemove)="onFollowerRemoved($event)" #input>
+        <ng-template let-item="item" let-index="index">
+            <img [src]="item.picture" class="message-avatar">
+        </ng-template>
+    <tag-input-dropdown [showDropdownIfEmpty]="true"
+                        [focusFirstElement]="true"
+                        [displayBy]="'fullName'"
+                        [identifyBy]="'id'"
+                        [autocompleteItems]="users | async">
+        <ng-template let-item="item" let-index="index">
+           <img [src]="item.picture" style="width: 26px; height: 26px;
+border-radius: 50%; vertical-align: -20%;"> {{ item.fullName }}
+        </ng-template>
+    </tag-input-dropdown>
+</tag-input>
+<section> -->

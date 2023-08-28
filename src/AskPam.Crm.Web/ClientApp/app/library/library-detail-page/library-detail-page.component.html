@@ -1,0 +1,164 @@
+﻿<td-layout-nav>
+    <div td-toolbar-content layout="row" layout-align="center center" flex class="app-toolbar">
+        <button mat-icon-button td-menu-button tdLayoutToggle>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span hide-gt-sm>Library</span>
+        <app-toolbar flex layout="row"></app-toolbar>
+    </div>
+
+    <td-layout-card-over>
+        <mat-card-title>{{library.name}}</mat-card-title>
+        <mat-card-subtitle *ngIf="library.tags">
+            <app-tags [model]="library.tags" [readOnly]="true"></app-tags>
+        </mat-card-subtitle>
+        <mat-divider></mat-divider>
+
+        <mat-card-content class="library-details" *tdLoading="'overlay'; strategy:'overlay'">
+
+            <td-expansion-panel #infoPanel disableRipple [expand]="true">
+                <ng-template td-expansion-panel-header>
+                    <mat-toolbar>
+                        <span>Library Information</span>
+                        <span flex></span>
+                        <mat-icon *ngIf="!infoPanel.expand">expand_more</mat-icon>
+                        <mat-icon *ngIf="infoPanel.expand">expand_less</mat-icon>
+                    </mat-toolbar>
+                </ng-template>
+
+                <mat-list>
+                    <div layout="row" layout-xs="column" layout-margin flex layout-fill>
+                        <mat-list-item flex *ngIf="library.startDate">
+                            <mat-icon mat-list-avatar>event</mat-icon>
+                            <p matLine>Start Date</p>
+                            <h4 matLine>{{library.startDate}}</h4>
+                        </mat-list-item>
+                        <mat-list-item flex *ngIf="library.endDate">
+                            <mat-icon mat-list-avatar>event</mat-icon>
+                            <p matLine>End Date</p>
+                            <h4 matLine>{{library.endDate}}</h4>
+                        </mat-list-item>
+                    </div>
+
+                    <div layout="row" layout-xs="column" layout-margin flex layout-fill>
+                        <mat-list-item flex *ngIf="library.email">
+                            <mat-icon mat-list-avatar>email</mat-icon>
+                            <p matLine>Email Address</p>
+                            <h4 matLine>{{library.email}}</h4>
+                        </mat-list-item>
+                        <mat-list-item flex *ngIf="library.website">
+                            <mat-icon mat-list-avatar>web</mat-icon>
+                            <p matLine>Website</p>
+                            <h4 matLine>{{library.website}}</h4>
+                        </mat-list-item>
+                    </div>
+
+                    <div layout="row" layout-margin flex layout-fill>
+                        <mat-list-item flex *ngIf="library.phone">
+                            <mat-icon mat-list-avatar>phone</mat-icon>
+                            <p matLine>Phone</p>
+                            <h4 matLine>{{library.phone}}</h4>
+                        </mat-list-item>
+                    </div>
+
+                    <div layout="row" layout-margin flex layout-fill>
+                        <mat-form-field flex>
+                            <textarea matTextareaAutosize matAutosizeMinRows="10"
+                            matAutosizeMaxRows="100" matInput  name="description" [ngModel]="library.description" [disabled]="true">
+                            </textarea>
+                        </mat-form-field>
+                    </div>
+                </mat-list>
+                <!-- <div layout="row" layout-margin flex layout-fill class="library-view-textarea">
+                        
+                            <div>
+                                <pre>{{library.description}}</pre>
+                            </div>
+                      
+                    </div> -->
+            </td-expansion-panel>
+
+            <td-expansion-panel #additionInfoPanel disableRipple *ngIf="library.typeValue == 1">
+                <ng-template td-expansion-panel-header>
+                    <mat-toolbar>
+                        <span>Additional Information</span>
+                        <span flex></span>
+                        <mat-icon *ngIf="!additionInfoPanel.expand">expand_more</mat-icon>
+                        <mat-icon *ngIf="additionInfoPanel.expand">expand_less</mat-icon>
+                    </mat-toolbar>
+                </ng-template>
+
+                <mat-list>
+                    <div layout="row" layout-margin flex layout-fill class="library-view-textarea">
+                        <mat-list-item flex *ngIf="library.menu">
+                            <p matLine>Menu</p>
+                            <h4 matLine>{{library.menu}}</h4>
+                        </mat-list-item>
+                    </div>
+
+                    <div layout="row" layout-margin flex layout-fill class="library-view-textarea">
+                        <mat-list-item flex *ngIf="library.price">
+                            <p matLine>Price</p>
+                            <h4 matLine>{{library.price}}</h4>
+                        </mat-list-item>
+                    </div>
+
+                    <div layout="row" layout-margin flex layout-fill class="library-view-textarea">
+                        <mat-list-item flex *ngIf="library.openingHours">
+                            <p matLine>Opening Hours</p>
+                            <h4 matLine>
+                                <pre>{{library.openingHours}}</pre>
+                            </h4>
+                        </mat-list-item>
+                    </div>
+
+                    <div layout="row" layout-margin flex layout-fill class="library-view-textarea">
+                        <mat-list-item flex *ngIf="library.area">
+                            <p matLine>Area</p>
+                            <h4 matLine>{{library.area}}</h4>
+                        </mat-list-item>
+                    </div>
+                </mat-list>
+            </td-expansion-panel>
+
+            <td-expansion-panel #addressPanel disableRipple *ngIf="library.typeValue == 1 || library.typeValue == 3">
+                <ng-template td-expansion-panel-header>
+                    <mat-toolbar>
+                        <span>Address</span>
+                        <span flex></span>
+                        <mat-icon *ngIf="!addressPanel.expand">expand_more</mat-icon>
+                        <mat-icon *ngIf="addressPanel.expand">expand_less</mat-icon>
+                    </mat-toolbar>
+                </ng-template>
+
+                <mat-list>
+                    <div layout="column" layout-margin flex layout-fill class="library-view-address">
+                        <mat-list-item layout="column" flex *ngIf="library.address1 || library.address2 || library.city || library.province || library.postalCode || library.country">
+                            <mat-icon mat-list-avatar>home</mat-icon>
+                            <p matLine>Address</p>
+                            <h4 matLine *ngIf="library.address1">{{library.address1}},</h4>
+                            <h4 matLine *ngIf="library.address2">{{library.address2}},</h4>
+                            <h4 matLine>
+                                <span *ngIf="library.city">{{library.city}}, </span>
+                                <span *ngIf="library.province">{{library.province}}, </span>
+                            </h4>
+                            <h4 matLine>
+                                <span *ngIf="library.postalCode">{{library.postalCode}}, </span>
+                                <span *ngIf="library.country">{{library.country}}</span>
+                            </h4>
+                        </mat-list-item>
+                    </div>
+                </mat-list>
+            </td-expansion-panel>
+        </mat-card-content>
+        <mat-card-actions layout="row" flex>
+            <!--<button type="button" (click)="cancel()" mat-raised-button class="secondary">Cancel</button>-->
+            <button type="button" [routerLink]="['/library/edit', library.id]" mat-raised-button color="accent">Edit</button>
+        </mat-card-actions>
+
+        <a mat-fab color="accent" class="mat-fab-bottom-right fixed" [routerLink]="['/library/add']" matTooltip="Add new library item">
+            <mat-icon>add</mat-icon>
+        </a>
+    </td-layout-card-over>
+
+</td-layout-nav>

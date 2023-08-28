@@ -1,0 +1,39 @@
+﻿<h1 matDialogTitle>Add Integration</h1>
+<form [formGroup]="formGroup">
+
+	<ng-template tdLoading="integration.edit">
+		<div mat-dialog-content>
+			<div layout="column">
+				<td-message #errorSection layout-margin [sublabel]="error?.message" color="warn" icon="error" [opened]="true">
+					<button td-message-actions mat-icon-button (click)="errorSection.close()">
+					<mat-icon>cancel</mat-icon>
+				</button>
+				</td-message>
+
+				<mat-select placeholder="Channel type" flex name="channel" formControlName="channelTypeId">
+					<mat-option *ngFor="let channel of channelTypes" [value]="channel.value">{{ channel.viewValue }}</mat-option>
+				</mat-select>
+
+				<mat-form-field flex>
+					<input matInput placeholder="Name" name="name" formControlName="name">
+				</mat-form-field>
+
+				<mat-form-field flex>
+					<input matInput placeholder="Username" name="Username" formControlName="username" flex>
+				</mat-form-field>
+
+				<mat-form-field flex *ngIf="formGroup.controls['channelTypeId'].value!=1">
+					<input matInput placeholder="Secret" name="Secret" formControlName="secret" flex>
+				</mat-form-field>
+
+				<mat-form-field flex *ngIf="formGroup.controls['channelTypeId'].value!=1">
+					<input matInput placeholder="Token" name="Token" formControlName="token" flex>
+				</mat-form-field>
+			</div>
+		</div>
+		<div mat-dialog-actions>
+			<button type="button" (click)="cancel()" mat-raised-button class="secondary">Cancel </button>
+			<button type="submit" (click)="submit()" [disabled]="!formGroup.valid" mat-raised-button color="accent">Save</button>
+		</div>
+	</ng-template>
+</form>

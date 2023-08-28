@@ -1,0 +1,34 @@
+﻿::ng-deep .followers {
+    
+    
+
+    tag {
+        padding: 0 !important;
+        height: 26px !important;
+        margin: 0.1rem 0.2rem !important;
+        background-color: rgba(0,0,0,0) !important;
+    }
+
+    .ng2-tag-input {
+        padding: 0 !important;
+        margin: 0 !important;
+        //border-bottom: 0px solid rgba(128, 0, 0, 0) !important;
+        //cursor: pointer !important;
+    }
+
+    // .ng2-tag-input__text-input {
+    //     background-color: rgba(0,0,0,0) !important;
+    //     cursor: pointer !important;
+    //     height: 26px !important;
+    //     width: 101px !important;
+    //     padding: 0 0 0 0.5rem !important;
+    // }
+}
+
+.message-avatar {
+    margin-left: -12px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+

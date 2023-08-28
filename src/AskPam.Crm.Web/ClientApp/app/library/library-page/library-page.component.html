@@ -1,0 +1,115 @@
+﻿<td-layout-nav-list  navigationRoute="/" [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : ((media.registerQuery('sm') | async) ? 'push' : 'over')"
+    [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '350px' : '100%'">
+
+    <button mat-icon-button td-menu-button tdLayoutToggle>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <div td-sidenav-content>
+        <button mat-icon-button tdLayoutNavListOpen [hideWhenOpened]="true">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <mat-nav-list>
+            <h3 matSubheader>Types</h3>
+            <a mat-list-item matRipple class="block relative" [style.font-weight]="libraryItemTypeId == null ? 'bold' : 'normal'" (click)="filterByType(null)">
+                All
+            </a>
+            <ng-template let-item let-last="last" ngFor [ngForOf]="types">
+                <a mat-list-item matRipple class="block relative" [style.font-weight]="(libraryItemTypeId && item.id == libraryItemTypeId) ? 'bold' : 'normal'"
+                    (click)="filterByType(item.id)" [tdLayoutNavListClose]="!media.query('gt-sm')">
+                    {{ item.name }}
+                </a>
+            </ng-template>
+        </mat-nav-list>
+    </div>
+    <div td-toolbar-content layout="row" layout-align="start center" flex class="app-toolbar">
+        <button mat-icon-button tdLayoutNavListOpen [hideWhenOpened]="true">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span hide-gt-sm>Library</span>
+        <app-toolbar flex layout="row"></app-toolbar>
+    </div>
+
+    <mat-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+        <div layout="row">
+            <td-search-box [alwaysVisible]="true" #searchBox backIcon="arrow_back" class="push-right-sm" placeholder="Search here" [debounce]="500"
+                (searchDebounce)="search($event)" flex>
+            </td-search-box>
+            <span hide-xs class="mat-sort-header pad-left md-body-1 tc-grey-500">
+                <mat-form-field>
+                    <mat-select [(ngModel)]="sortKey">
+                        <mat-option *ngFor="let option of columnOptions" [value]="option.value" (click)="sortBy(sortKey)">
+                            {{ option.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </span>
+            <!-- <a hide-xs class="mat-sort-header" (click)="sortBy(sortKey)">
+                <span layout="row" layout-align="start center">
+                    <mat-icon class="md-sort-icon" style="cursor:pointer">{{headers[sortKey] === 'ASC'? 'arrow_upward' : 'arrow_downward'}}</mat-icon>
+                </span>
+            </a> -->
+        </div>
+        <mat-divider></mat-divider>
+        <mat-list>
+            <mat-nav-list class="will-load item-list">
+                <div class="md-padding" *ngIf="filtered && (!filteredData || filteredData.length === 0)" layout="row" layout-align="center center">
+                    <h3>No library to display.</h3>
+                </div>
+                <ng-template let-item let-last="last" ngFor [ngForOf]="filteredData">
+                    <a mat-list-item matRipple class="block relative" [routerLink]="['/library/view', item.id]">
+                        <mat-icon mat-list-avatar>library_books</mat-icon>
+                        <h1 matLine>{{item.name}} </h1>
+                        <p matLine>
+                            <span *ngIf="item.website">
+                                <!--<i class="material-icons">language</i>-->
+                                <a href="{{ item.website }}" class="ng-binding" onclick="event.stopPropagation();" target="_blank">
+                                    {{item.website}}
+                                </a> |
+                            </span>
+                            <span *ngIf="item.nationalPhone">
+                                <!--<i class="material-icons">phone</i>-->{{item.nationalPhone}} |</span>
+                            <span *ngIf="item.address1">
+                                <!--<i class="material-icons">pin_drop</i>-->
+                                <a href="http://maps.google.com/?q={{item.address1}} {{item.address2}} {{item.city}}" class="ng-binding" onclick="event.stopPropagation();"
+                                    target="_blank">
+                                    {{item.address1}} {{item.address2}} {{item.city}}
+                                </a>
+                            </span>
+                        </p>
+                        <h3 matLine> {{item.description}} </h3>
+                        <div matLine  *ngIf="item.tags.length>0">
+                            <app-tags [model]="item.tags" [readOnly]="true"></app-tags>
+                        </div>
+                        <span flex></span>
+                        <span>
+                            <button mat-icon-button [mat-menu-trigger-for]="menu" onclick="event.preventDefault(); event.stopPropagation();">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu x-position="before" #menu="matMenu">
+                                <a [routerLink]="['/library/edit', item.id]" mat-menu-item>
+                                    Edit
+                                </a>
+                                <button (click)="delete(item.id)" mat-menu-item>
+                                    Delete
+                                </button>
+                            </mat-menu>
+                        </span>
+                    </a>
+                </ng-template>
+            </mat-nav-list>
+        </mat-list>
+        <mat-divider></mat-divider>
+        <td-paging-bar #pagingBar *ngIf="filteredTotal > 10" [pageSize]="pageSize" [total]="filteredTotal" (change)="page($event)">
+            <mat-select [(ngModel)]="pageSize">
+                <mat-option *ngFor="let size of [20,50,100]" [value]="size">
+                    {{size}}
+                </mat-option>
+            </mat-select>
+            <span td-paging-bar-label hide-xs>Row per page:</span> {{pagingBar.range}}
+            <span hide-xs>of {{pagingBar.total}}</span>
+        </td-paging-bar>
+    </mat-card>
+    <a mat-fab color="accent" class="mat-fab-bottom-right fixed" [routerLink]="['/library/add']" matTooltip="Add new library item">
+        <mat-icon>add</mat-icon>
+    </a>
+</td-layout-nav-list>

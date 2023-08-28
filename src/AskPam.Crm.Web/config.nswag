@@ -1,0 +1,91 @@
+﻿{
+  "runtime": "NetCore20",
+  "swaggerGenerator": {
+    "webApiToSwagger": {
+      "controllerNames": [
+        "AskPam.Crm.Authorization.AccountController",
+        "AskPam.Crm.Configuration.OrganizationSettingsController",
+        "AskPam.Crm.Configuration.SettingsController",
+        "AskPam.Crm.Contacts.ContactsController",
+        "AskPam.Crm.Controllers.Configuration.UserSettingsController",
+        "AskPam.Crm.Controllers.Dashboard.DashboardController",
+        "AskPam.Crm.Controllers.Followers.FollowersController",
+        "AskPam.Crm.Controllers.Notifications.NotificationsController",
+        "AskPam.Crm.Controllers.Storage.StorageController",
+        "AskPam.Crm.Controllers.Upload.UploadController",
+        "AskPam.Crm.Conversations.ConversationsController",
+        "AskPam.Crm.InternalNotes.NotesController",
+        "AskPam.Crm.Library.LibraryController",
+        "AskPam.Crm.Organizations.OrganizationController",
+        "AskPam.Crm.Posts.PostsController",
+        "AskPam.Crm.Tags.TagsController",
+        "AskPam.Crm.Users.UsersController"
+      ],
+      "isAspNetCore": true,
+      "defaultUrlTemplate": "api/{controller}/{action}/{id}",
+      "defaultPropertyNameHandling": "CamelCase",
+      "defaultReferenceTypeNullHandling": "Null",
+      "defaultEnumHandling": "Integer",
+      "flattenInheritanceHierarchy": false,
+      "generateKnownTypes": true,
+      "generateXmlObjects": false,
+      "generateAbstractProperties": false,
+      "addMissingPathParameters": false,
+      "ignoreObsoleteProperties": false,
+      "allowReferencesWithProperties": false,
+      "infoTitle": "Web API Swagger specification",
+      "infoVersion": "1.0.0",
+      "output": null,
+      "assemblyPaths": [
+        "bin/Debug/netcoreapp2.0/AskPam.Crm.Web.dll"
+      ],
+      "referencePaths": [
+        "C:/Program Files/dotnet/shared/Microsoft.NETCore.App/2.0.3",
+        "bin/Release/PublishOutput",
+        "../../../../../.nuget/packages"
+      ]
+    }
+  },
+  "codeGenerators": {
+    "swaggerToTypeScriptClient": {
+      "className": "{controller}Service",
+      "moduleName": "",
+      "namespace": "",
+      "typeScriptVersion": 2.0,
+      "template": "Angular",
+      "promiseType": "Promise",
+      "httpClass": "HttpClient",
+      "injectionTokenType": "InjectionToken",
+      "dateTimeType": "Date",
+      "nullValue": "Undefined",
+      "generateClientClasses": true,
+      "generateClientInterfaces": false,
+      "generateOptionalParameters": false,
+      "wrapDtoExceptions": false,
+      "clientBaseClass": "",
+      "wrapResponses": false,
+      "generateResponseClasses": true,
+      "responseClass": "SwaggerResponse",
+      "configurationClass": "",
+      "useTransformOptionsMethod": false,
+      "useTransformResultMethod": false,
+      "generateDtoTypes": true,
+      "operationGenerationMode": "MultipleClientsFromOperationId",
+      "markOptionalProperties": true,
+      "generateCloneMethod": false,
+      "typeStyle": "Interface",
+      "extendedClasses": [],
+      "extensionCode": "",
+      "generateDefaultValues": true,
+      "excludedTypeNames": [],
+      "handleReferences": false,
+      "generateConstructorInterface": true,
+      "convertConstructorInterfaceData": false,
+      "importRequiredTypes": true,
+      "useGetBaseUrlMethod": false,
+      "baseUrlTokenName": "API_BASE_URL",
+      "queryNullValue": "",
+      "output": "ClientApp/app/services/crm.services.ts"
+    }
+  }
+}

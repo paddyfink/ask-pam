@@ -1,0 +1,21 @@
+﻿.settings-overview /deep/ {
+    .flex-container {
+        flex-wrap: wrap;
+    }
+
+    div[disabled] {
+        cursor: not-allowed;
+    }
+
+    div[disabled] .icon-background {
+        color: lightgray;
+    }
+
+    .icon-background {
+        color: #6a1b9a;
+    }
+
+    .icon-text {
+        text-align: center
+    }
+}

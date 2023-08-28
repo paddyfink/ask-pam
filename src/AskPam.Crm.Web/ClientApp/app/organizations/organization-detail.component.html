@@ -1,0 +1,83 @@
+<td-layout-nav>
+  <div td-toolbar-content layout="row" layout-align="center center" flex class="app-toolbar">
+    <button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span hide-gt-sm>Organizations</span>
+    <app-toolbar flex layout="row"></app-toolbar>
+  </div>
+
+  <mat-card>
+    <mat-toolbar>
+      <span>{{organization?.name}}</span>
+      <span flex></span>
+      <button mat-raised-button (click)="openUser()">Add User</button>
+      <button mat-raised-button (click)="openIntegration()">Add Integration</button>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <h3 matLine> Name </h3>
+          <p matLine> {{organization?.name}} </p>
+        </mat-list-item>
+        <mat-divider md-inset></mat-divider>
+
+        <mat-divider></mat-divider>
+        <div layout="column">
+          <mat-slide-toggle [checked]="organization?.fullContact" [disabled]="true">FullContact</mat-slide-toggle>
+          <mat-slide-toggle [checked]="organization?.klik" [disabled]="true">Klik</mat-slide-toggle>
+          <mat-slide-toggle [checked]="organization?.brainDates" [disabled]="true">BrainDates</mat-slide-toggle>
+          <mat-slide-toggle [checked]="organization?.stay22" [disabled]="true">Stay22</mat-slide-toggle>
+        </div>
+        <!-- <h3 matSubheader>Feature</h3> -->
+        <!-- <ng-template let-item let-last="last" ngFor [ngForOf]="carddates">
+      <mat-list-item>
+        <mat-icon matListAvatar>{{item.icon}}</mat-icon>
+        <h3 matLine> {{item.date | timeAgo}} </h3>
+        <p matLine> {{item.description}} </p>
+      </mat-list-item>
+      <mat-divider md-inset *ngIf="!last"></mat-divider>
+    </ng-template> -->
+      </mat-list>
+      <mat-tab-group>
+        <mat-tab label="Users">
+          <mat-list>
+            <ng-template let-item let-last="last" ngFor [ngForOf]="users">
+              <a mat-list-item matRipple class="block relative">
+                <mat-icon mat-list-avatar>account_box</mat-icon>
+                <h3 matLine> {{item.firstName}} {{item.lastName}}</h3>
+                <p matLine>{{item.email}}</p>
+                <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row">
+                  <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ item.roleName }} </div>
+                </span>
+              </a>
+              <mat-divider *ngIf="!last" md-inset></mat-divider>
+            </ng-template>
+          </mat-list>
+        </mat-tab>
+        <mat-tab label="Integrations">
+          <table td-data-table>
+            <thead>
+              <tr td-data-table-column-row>
+                <th td-data-table-column> Id </th>
+                <th td-data-table-column> Name </th>
+                <th td-data-table-column> Channel </th>
+                <th td-data-table-column> Username </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr td-data-table-row *ngFor="let row of integrations">
+                <td td-data-table-cell> {{row.broidId}} </td>
+                <td td-data-table-cell> {{row.name}} </td>
+                <td td-data-table-cell> {{row.channelType}} </td>
+                <td td-data-table-cell> {{row.username}} </td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+
+  </mat-card>
+</td-layout-nav>

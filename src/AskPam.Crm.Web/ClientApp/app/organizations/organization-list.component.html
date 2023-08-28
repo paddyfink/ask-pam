@@ -1,0 +1,43 @@
+﻿<td-layout-nav>
+    <div td-toolbar-content layout="row" layout-align="center center" flex class="app-toolbar">
+        <button mat-icon-button td-menu-button tdLayoutToggle>
+                    <mat-icon>menu</mat-icon>
+                  </button>
+        <span hide-gt-sm>Organizations</span>
+        <app-toolbar flex layout="row"></app-toolbar>
+    </div>
+    
+    <mat-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+    <!--<td-search-box class="push-left push-right" placeholder="search" [alwaysVisible]="true" (searchDebounce)="filterUsers($event)"></td-search-box>-->
+    <mat-divider></mat-divider>
+    <mat-list>
+
+        <a mat-list-item *ngFor="let organization of organizations" [routerLink]="['/admin/organizations/view', organization.id]">
+            <mat-icon mat-list-avatar>person</mat-icon>
+            <h3 matLine> {{organization.name}} </h3>
+            <p matLine> Montreal </p>
+            <span flex></span>
+            <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row">
+                    <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{organization.usersCount}} users </div>
+                    <!-- <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{organization.integrationsCount}} integrations </div> -->
+                </span>
+            <!-- <span>
+                    <button mat-icon-button [mat-menu-trigger-for]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu x-position="before" #menu="matMenu">
+                        <a  mat-menu-item>Edit</a>
+                        <button (click)="deleteOrganization(organization.id)" mat-menu-item>Delete</button>
+                    </mat-menu>
+                </span> -->
+        </a>
+
+    </mat-list>
+    <mat-divider></mat-divider>
+   
+</mat-card>
+<button mat-fab class="mat-fab-bottom-right" (click)="openDialog()"> 
+    <mat-icon>add</mat-icon>
+</button>
+
+</td-layout-nav>

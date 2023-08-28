@@ -1,0 +1,16 @@
+﻿<h1 matDialogTitle>Add Organization</h1>
+
+<form [formGroup]="formGroup">
+    <div mat-dialog-content>
+        <div layout="row" layout-margin>
+            <mat-form-field flex>
+                <input matInput placeholder="Name" formControlName="name" name="name" maxlength="20">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-button [disabled]="!formGroup.valid" color="primary" (click)="add()">Add</button>
+        <button mat-button matDialogClose>Cancel</button>
+    </div>
+</form>

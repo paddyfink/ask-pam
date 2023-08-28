@@ -1,0 +1,165 @@
+﻿<td-layout-nav>
+    <div td-toolbar-content layout="row" layout-align="center center" flex class="app-toolbar">
+        <button mat-icon-button td-menu-button tdLayoutToggle>
+                            <mat-icon>menu</mat-icon>
+                          </button>
+        <span hide-gt-sm>Library</span>
+        <app-toolbar flex layout="row"></app-toolbar>
+    </div>
+
+    <td-layout-card-over>
+        <mat-card-title>{{library.name}} </mat-card-title>
+        <mat-card-content *tdLoading="'library.edit'">
+            <div>
+                <app-tags [(model)]="library.tags"></app-tags>
+            </div>
+            <form (ngSubmit)="submit()" #f="ngForm" class="edit">
+                <td-expansion-panel #infoPanel disableRipple [expand]="true">
+                    <ng-template td-expansion-panel-header>
+                        <mat-toolbar>
+                            <span>Library Information</span>
+                            <span flex></span>
+                            <mat-icon *ngIf="!infoPanel.expand">expand_more</mat-icon>
+                            <mat-icon *ngIf="infoPanel.expand">expand_less</mat-icon>
+                        </mat-toolbar>
+                    </ng-template>
+
+                    <div layout="row" layout-margin>
+                        <mat-form-field>
+                            <mat-select placeholder="Type" name="type" required class="md-block" [(ngModel)]="library.typeValue" style="margin-left:8px;">
+                                <mat-option *ngFor="let type of types" [value]="type.id">{{ type.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-margin>
+                        <mat-form-field flex>
+                            <input matInput placeholder="Name" name="name" required [(ngModel)]="library.name" />
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-margin *ngIf="library.typeValue == 2">
+                        <mat-form-field flex>
+                            <input matInput placeholder="Subject" name="subject" [(ngModel)]="library.subject" />
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-xs="column" layout-margin *ngIf="library.typeValue == 3">
+                        <mat-form-field flex>
+                            <input matInput placeholder="Start date" name="startDate" required type="datetime-local" [(ngModel)]="library.startDate"
+                            />
+                        </mat-form-field>
+                        <mat-form-field flex>
+                            <input matInput placeholder="End date" name="endDate" type="datetime-local" [(ngModel)]="library.endDate" />
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-xs="column" layout-margin *ngIf="library.typeValue != 2">
+                        <mat-form-field flex>
+                            <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="library.email" />
+                        </mat-form-field>
+                        <mat-form-field flex>
+                            <input matInput placeholder="Website" name="website" typeof="url" [(ngModel)]="library.website" type="url" />
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-margin *ngIf="library.typeValue != 2">
+                        <mat-form-field flex>
+                            <input matInput placeholder="Phone" name="phone" [(ngModel)]="library.phone" />
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-margin>
+                        <mat-form-field flex>
+                            <textarea rows="10" matInput placeholder="Description" name="description" [(ngModel)]="library.description">
+                            </textarea>
+                        </mat-form-field>
+                    </div>
+                </td-expansion-panel>
+
+                <td-expansion-panel #additionInfoPanel disableRipple *ngIf="library.typeValue == 1">
+                    <ng-template td-expansion-panel-header>
+                        <mat-toolbar>
+                            <span>Additional Information</span>
+                            <span flex></span>
+                            <mat-icon *ngIf="!additionInfoPanel.expand">expand_more</mat-icon>
+                            <mat-icon *ngIf="additionInfoPanel.expand">expand_less</mat-icon>
+                        </mat-toolbar>
+                    </ng-template>
+
+
+                    <div layout="row" layout-margin>
+                        <mat-form-field flex>
+                            <input matInput placeholder="Menu" name="menu" [(ngModel)]="library.menu" />
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-margin>
+                        <mat-form-field flex>
+                            <input matInput placeholder="Price" name="price" [(ngModel)]="library.price" />
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-margin>
+                        <mat-form-field flex>
+                            <textarea rows="2" matInput placeholder="Opening hours" name="openingHours" [(ngModel)]="library.openingHours">
+                            </textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-margin>
+                        <mat-form-field flex>
+                            <input matInput placeholder="Area" name="area" [(ngModel)]="library.area" />
+                        </mat-form-field>
+                    </div>
+                </td-expansion-panel>
+
+                <td-expansion-panel #addressPanel disableRipple *ngIf="library.typeValue == 1 || library.typeValue == 3">
+                    <ng-template td-expansion-panel-header>
+                        <mat-toolbar>
+                            <span>Address</span>
+                            <span flex></span>
+                            <mat-icon *ngIf="!addressPanel.expand">expand_more</mat-icon>
+                            <mat-icon *ngIf="addressPanel.expand">expand_less</mat-icon>
+                        </mat-toolbar>
+                    </ng-template>
+
+                    <div layout="row" layout-margin>
+                        <mat-form-field flex>
+                            <input matInput placeholder="Address 1" name="address1" [(ngModel)]="library.address1" />
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-margin>
+                        <mat-form-field flex>
+                            <input matInput placeholder="Address 2" name="address2" [(ngModel)]="library.address2" />
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-xs="column" layout-margin>
+                        <mat-form-field flex>
+                            <input matInput placeholder="City" name="city" [(ngModel)]="library.city" />
+                        </mat-form-field>
+                        <mat-form-field flex>
+                            <input matInput placeholder="Province" name="province" [(ngModel)]="library.province">
+                        </mat-form-field>
+                    </div>
+
+                    <div layout="row" layout-xs="column" layout-margin>
+                        <mat-form-field flex>
+                            <input matInput placeholder="Postal code" name="postalCode" [(ngModel)]="library.postalCode" />
+                        </mat-form-field>
+                        <mat-form-field flex>
+                            <input matInput placeholder="Country" name="country" [(ngModel)]="library.country">
+                        </mat-form-field>
+                    </div>
+                </td-expansion-panel>
+            </form>
+        </mat-card-content>
+        <mat-card-actions layout="row">
+            <button type="button" (click)="cancel()" mat-raised-button class="secondary">Cancel </button>
+            <button (click)="submit()" mat-raised-button color="accent">Save</button>
+            <!-- <button (click)="submit()" [disabled]="!f.valid" mat-raised-button color="accent">Save</button> -->
+        </mat-card-actions>
+    </td-layout-card-over>
+</td-layout-nav>

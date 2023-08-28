@@ -1,0 +1,58 @@
+﻿<td-layout-nav-list  navigationRoute="/" [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : ((media.registerQuery('sm') | async) ? 'push' : 'over')"
+    [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '350px' : '100%'">
+
+    <button mat-icon-button td-menu-button tdLayoutToggle>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <div td-sidenav-content>
+        <button mat-icon-button tdLayoutNavListOpen [hideWhenOpened]="true">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <mat-nav-list>
+            <mat-list-item mat-list-item [routerLink]="['/settings']">
+                Overview
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <h3 matSubheader> Communication Channels</h3>
+            <mat-list-item mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/settings/email']">
+                <i class="fa fa-envelope push-right"></i> Email
+            </mat-list-item>
+            <!-- <mat-list-item mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/settings/widget']">
+                <i class="fa fa-globe push-right"></i> Widget
+            </mat-list-item>
+            <mat-list-item mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/settings/facebook']">
+                <i class="fa fa-facebook push-right"></i> Facebook
+            </mat-list-item> -->
+         
+
+
+            <mat-divider></mat-divider>
+            <h3 matSubheader>General Settings</h3>
+            <!--<mat-list-item mat-list-item [routerLink]="['/settings/account']">
+                        <i class="fa fa-wrench push-right"></i>Account
+                    </mat-list-item>-->
+            <mat-list-item mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/settings/users']">
+                <i class="fa fa-users push-right"></i> Users
+            </mat-list-item>
+            <mat-list-item mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/settings/tags']">
+                <i class="fa fa-tags push-right" push-right></i> Tags
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 matSubheader>Artifcial Intelligence</h3>
+            <mat-list-item mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/settings/qna-bot']">
+                <i class="fa fa-question-circle push-right"></i> Q&A Bot
+            </mat-list-item>
+        </mat-nav-list>
+    </div>
+    <div td-toolbar-content layout="row" layout-align="start center" flex  class="app-toolbar">
+        <button mat-icon-button tdLayoutNavListOpen [hideWhenOpened]="true">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span hide-gt-sm>Settings</span>
+        <app-toolbar flex layout="row"></app-toolbar>
+    </div>
+
+    <router-outlet></router-outlet>
+
+</td-layout-nav-list>

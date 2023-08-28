@@ -1,0 +1,84 @@
+﻿// :host {
+//     display: flex;
+//     margin: 0;
+//     width: 100%;
+//     min-height: 100%;
+//     height: 100%;
+//     overflow: hidden;
+
+//     .menu-button {
+//         [dir='ltr'] & {
+//             margin-left: 0px;
+//         }
+
+//         [dir='rtl'] & {
+//             margin-right: 0px;
+//         }
+//     }
+
+//     .create-menu[mat-icon-button] {
+//         background-color: #009688;
+//         margin-left: 15px !important;
+//     }
+
+//     mat-toolbar [mat-icon-button] {
+//         margin: 0;
+//     }
+
+//     .current-user {
+//         cursor: pointer;
+//         font-size: 16px;
+
+//         .avatar {
+//             width: 40px;
+//             min-width: 40px;
+//             height: 40px;
+//             line-height: 40px;
+//             margin: 0 8px;
+//             border-radius: 50%;
+//             font-size: 17px;
+//             font-weight: 500;
+//             text-align: center;
+//             color: #FFF;
+//         }
+
+//         span {
+//             line-height: 40px;
+//         }
+
+//         .material-icons.mat-icon {
+//             line-height: 1.8;
+//         }
+//     }
+// }
+
+// .seen  {
+// }
+// .unread {
+//     background-color: lightgray;
+// }
+// .currentOrganization {
+//     font-weight: bold;
+//     cursor:default;
+// }
+
+// mat-select {
+//     display: inline-block;
+//     margin-top: 17px;
+//     width: 100%;
+// }
+
+// @media only screen and (max-width: 400px) {
+//     .mat-toolbar {
+//         font-size: 16px;
+
+//         [mat-icon-button] {
+//             width: 30px;
+//             height: 30px;
+
+//             .mat-icon {
+//                 line-height: 17px;
+//             }
+//         }
+//     }
+// }

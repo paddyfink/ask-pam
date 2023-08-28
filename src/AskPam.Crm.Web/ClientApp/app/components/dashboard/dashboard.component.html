@@ -1,0 +1,168 @@
+﻿<td-layout-nav>
+    <div td-toolbar-content layout="row" layout-align="center center" flex class="app-toolbar">
+        <button mat-icon-button td-menu-button tdLayoutToggle>
+                    <mat-icon>menu</mat-icon>
+                  </button>
+        <span hide-gt-sm>Dashboard</span>
+        <app-toolbar flex layout="row"></app-toolbar>
+    </div>
+
+    <mat-card flex>
+        <mat-card-content>
+            <div layout="row" class="boxes" flex>
+                <div flex="25" layout="column">
+                    <a mat-list-item [routerLink]="['/conversations','assignedToMe','']">
+                        <mat-card class="mat-card-colored" flex>
+                            <mat-card-content style="background: #FFB74D;">
+                                <ng-template tdLoading="conversationsAssignedCount">
+                                    <div class="text-super">{{ conversationsAssignedCount }} </div>
+                                    <!--<mat-icon class="icon tc-indigo-700">perm_contact_calendar</mat-icon>-->
+                                    <div layout="column">
+                                        <div class="md-subhead" *ngIf="conversationsAssignedCount > 1">Conversations <br /> assigned to me </div>
+                                        <div class="md-subhead" *ngIf="conversationsAssignedCount < 2">Conversation <br />assigned to me </div>
+                                        <!--<div class="md-caption tc-grey-600">updated {{ '2016-06-17 12:59:59' | timeAgo }}</div>-->
+                                    </div>
+                                </ng-template>
+                            </mat-card-content>
+                        </mat-card>
+                    </a>
+                </div>
+                <div flex="25" layout="column">
+                    <a mat-list-item [routerLink]="['/conversations','flagged','']">
+                        <mat-card class="mat-card-colored" flex>
+                            <mat-card-content style="background: #BF360C;">
+                                <ng-template tdLoading="conversationsFlaggedCount">
+                                    <div class="text-super">{{ conversationsFlaggedCount }} </div>
+                                    <!--<mat-icon class="icon tc-light-blue-700">sd_storage</mat-icon>-->
+                                    <div layout="column">
+                                        <div class="md-subhead" *ngIf="conversationsFlaggedCount > 1">Conversations <br /> flagged</div>
+                                        <div class="md-subhead" *ngIf="conversationsFlaggedCount < 2">Conversation <br /> Flagged</div>
+                                        <!--<div class="md-caption tc-grey-600">updated {{ '2016-07-18 11:02:59' | timeAgo }}</div>-->
+                                    </div>
+                                </ng-template>
+                            </mat-card-content>
+                        </mat-card>
+                    </a>
+                </div>
+                <div flex="25" layout="column">
+                    <a mat-list-item [routerLink]="['/conversations','unread','']">
+                        <mat-card class="mat-card-colored" flex>
+                            <mat-card-content style="background: #F57C00;">
+                                <ng-template tdLoading="conversationsUnreadCount">
+                                    <div class="text-super">{{ conversationsUnreadCount }} </div>
+                                    <!--<mat-icon class="icon tc-cyan-700">receipt</mat-icon>-->
+                                    <div layout="column">
+                                        <div class="md-subhead" *ngIf="conversationsUnreadCount > 1">Conversations <br /> unread</div>
+                                        <div class="md-subhead" *ngIf="conversationsUnreadCount < 2">Conversation <br />unread</div>
+                                        <!--<div class="md-caption tc-grey-600">updated {{ '2016-07-13 09:59:59' | timeAgo }}</div>-->
+                                    </div>
+                                </ng-template>
+                            </mat-card-content>
+                        </mat-card>
+                    </a>
+                </div>
+                <div flex="25" layout="column">
+                    <a mat-list-item [routerLink]="['/conversations','followedByMe','']">
+                        <mat-card class="mat-card-colored" flex>
+                            <mat-card-content style="background: #FF9800;">
+                                <ng-template tdLoading="conversationsFollowedCount">
+                                    <div class="text-super">{{ conversationsFollowedCount}} </div>
+                                    <!--<mat-icon class="icon tc-cyan-700">receipt</mat-icon>-->
+                                    <div layout="column">
+                                        <div class="md-subhead" *ngIf="conversationsFollowedCount > 1">Conversations <br /> followed by me </div>
+                                        <div class="md-subhead" *ngIf="conversationsFollowedCount < 2">Conversation <br /> followed by me </div>
+                                        <!--<div class="md-caption tc-grey-600">updated {{ '2016-07-13 09:59:59' | timeAgo }}</div>-->
+                                    </div>
+                                </ng-template>
+                            </mat-card-content>
+                        </mat-card>
+                    </a>
+                </div>
+            </div>
+
+            <div layout="row" class="recently-added">
+                <div flex-gt-sm="50">
+                    <mat-card>
+                        <mat-card-title>Recently added library items</mat-card-title>
+                        <mat-divider></mat-divider>
+                        <mat-nav-list class="will-load item-list">
+                            <ng-template tdLoading="libraryItems">
+                                <div class="md-padding" *ngIf="libraryItems && (!libraryItems || libraryItems.length === 0)" layout="row" layout-align="center center">
+                                    <h3>No library items to display.</h3>
+                                </div>
+                                <ng-template let-item let-last="last" ngFor [ngForOf]="libraryItems">
+                                    <a mat-list-item matRipple class="block relative" [routerLink]="['/library/view', item.id]">
+                                        <mat-icon mat-list-avatar>library_books</mat-icon>
+                                        <h1 matLine>{{item.name}} </h1>
+                                        <p matLine>
+                                            <span *ngIf="item.website">
+                                                    <a href="{{item.website}}"
+                                                       class="ng-binding"
+                                                       onclick="event.stopPropagation();"
+                                                       target="_blank">
+                                                        {{item.website}}
+                                                    </a> |
+                                                </span>
+                                            <span *ngIf="item.nationalPhone">{{item.nationalPhone}} |</span>
+                                            <span *ngIf="item.address1">
+                                                    <a href="http://maps.google.com/?q={{item.address1}} {{item.address2}} {{item.city}}"
+                                                       class="ng-binding"
+                                                       onclick="event.stopPropagation();"
+                                                       target="_blank">
+                                                        {{item.address1}} {{item.address2}} {{item.city}}
+                                                    </a>
+                                                </span>
+                                        </p>
+                                        <h3 matLine> {{item.description}} </h3>
+                                    </a>
+                                    <mat-divider md-inset></mat-divider>
+                                </ng-template>
+                                <div style="margin:auto; text-align:center;">
+                                    <a [routerLink]="['/library']" mat-raised-button color="accent" class="push">
+                                            See more
+                                        </a>
+                                </div>
+                            </ng-template>
+                        </mat-nav-list>
+                    </mat-card>
+                </div>
+                <div flex-gt-sm="50">
+                    <mat-card>
+                        <mat-card-title>Recently added contacts</mat-card-title>
+                        <mat-divider></mat-divider>
+                        <mat-nav-list class="will-load item-list">
+                            <ng-template tdLoading="contacts">
+                                <div class="md-padding" *ngIf="contacts && (!contacts || contacts.length === 0)" layout="row" layout-align="center center">
+                                    <h3>No contact to display.</h3>
+                                </div>
+                                <ng-template let-item let-last="last" ngFor [ngForOf]="contacts">
+                                    <a mat-list-item matRipple class="block relative" [routerLink]="['/contacts/view', item.id]">
+                                        <mat-icon mat-list-avatar>person</mat-icon>
+                                        <h3 matLine> {{item.fullName}}</h3>
+                                        <p matLine>{{item.emailAddress}}</p>
+                                        <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row" class="contact-phone-group">
+                                                <span class="md-caption tc-grey-500" flex> {{item.mobilePhoneNumber}} </span>
+                                        <span class="md-caption tc-grey-500" flex> {{item.groupName}} </span>
+                                        <span class="md-caption tc-grey-500" flex>
+                                                    <ng-template let-tag let-lastTag="last" ngFor [ngForOf]="item.tags">
+                                                        {{tag.tagName}}
+                                                        <span *ngIf="!lastTag" style="padding-right:0">|</span>
+                                </ng-template>
+                                </span>
+                                </span>
+                                </a>
+                                <mat-divider md-inset></mat-divider>
+                            </ng-template>
+                            <div style="margin:auto; text-align:center;">
+                                <a [routerLink]="['/contacts']" mat-raised-button color="accent" class="push">
+                                            See more
+                                        </a>
+                            </div>
+                            </ng-template>
+                        </mat-nav-list>
+                    </mat-card>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</td-layout-nav>

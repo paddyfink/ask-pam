@@ -1,0 +1,145 @@
+﻿<td-layout #layout>
+    <td-navigation-drawer   [sidenavTitle]="organizationName" [name]="user?.firstName +' '+ user?.lastName" [email]="user?.email">
+        <mat-nav-list flex>
+            <a mat-list-item  [routerLinkActive]="['active']" [routerLink]="['/admin/organizations']" *ngIf="isHost$ | async" (click)="layout.close()">
+                <mat-icon matListIcon>business</mat-icon> Organizations</a>
+            <a mat-list-item  [routerLinkActive]="['active']" [routerLink]="['/admin/configurations']" *ngIf="isHost$ | async" (click)="layout.close()">
+                <mat-icon matListIcon>settings</mat-icon>Configurations</a>
+                <mat-divider></mat-divider>
+            <a mat-list-item  [routerLinkActive]="['active']" [routerLink]="['/home']" (click)="layout.close()">
+                <mat-icon matListIcon>home</mat-icon>Dashboard</a>
+            <a mat-list-item  [routerLinkActive]="['active']" [routerLink]="['/conversations','all','']" (click)="layout.close()">
+                <mat-icon matListIcon>chat</mat-icon>Conversations</a>
+            <a mat-list-item  [routerLinkActive]="['active']"  [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/contacts']" (click)="layout.close()">
+                <mat-icon matListIcon>contacts</mat-icon>Contacts</a>
+            <a mat-list-item  [routerLinkActive]="['active']" [routerLink]="['/library']" (click)="layout.close()">
+                <mat-icon matListIcon>library_books</mat-icon>Library</a>
+           
+        </mat-nav-list>
+        <!-- <mat-nav-list td-navigation-drawer-menu>
+            <a mat-list-item>
+                <mat-icon>business</mat-icon>{{organizationName}}</a>
+            <ng-template let-item let-last="last" ngFor [ngForOf]="organizations">
+                <a mat-list-item (click)="switchOrganization(item);layout.close()">
+                    <mat-icon>business</mat-icon>{{item.name}}</a>
+            </ng-template>
+            <mat-divider></mat-divider>
+            <a [routerLink]="['/settings']" (click)="layout.close()" mat-list-item *ngIf="isAdmin$ | async">
+                <mat-icon>settings</mat-icon>
+                <span>Settings</span>
+            </a>
+            <a [routerLink]="['/profile']" (click)="layout.close()" mat-list-item>
+                <mat-icon>person</mat-icon>
+                <span>Edit my Profile</span>
+            </a>
+            <a mat-list-item (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Sign out</span>
+            </a>
+        </mat-nav-list> -->
+    </td-navigation-drawer>
+    <router-outlet></router-outlet>
+</td-layout> 
+
+<!-- 
+
+<mat-sidenav-container fullscreen>
+    <mat-sidenav>
+        <navigation-drawer></navigation-drawer>
+    </mat-sidenav>
+
+    <div layout="column" layout-fill>
+        <mat-toolbar color="primary" style="color: #ffffff;">
+            <button mat-icon-button class="menu-button" (click)="open()">
+                <mat-icon class="md-24">menu</mat-icon>
+            </button>
+            <!--<mat-icon *ngIf="icon" [routerLink]="navigationRoute" class="cursor-pointer">{{icon}}</mat-icon>
+            <mat-icon *ngIf="logo && !icon" class="mat-icon-logo cursor-pointer" [svgIcon]="logo" [routerLink]="navigationRoute"></mat-icon>->
+            <span class="cursor-pointer">{{(layout$|async).pageTitle}}</span>
+
+            <button mat-icon-button mat-mini-fab [matMenuTriggerFor]="createMenu" aria-label="Create new item" class="create-menu">
+                <mat-icon class="md-24">add</mat-icon>
+            </button>
+            <mat-menu #createMenu="matMenu">
+                <button (click)="newMessage()" mat-menu-item> New message </button>
+                <button [routerLink]="['/conversations/messaging']" mat-menu-item> New group message </button>
+                <button [routerLink]="['/contacts/add']" mat-menu-item> Create new contact </button>
+                <button [routerLink]="['/library/add']" mat-menu-item> Create new library item </button>
+            </mat-menu>
+
+            <span flex></span>
+            <button id="intecomLauncher" mat-icon-button matTooltip="Help" matTooltipPosition="below">
+                <td-notification-count [notifications]="intercomUnreadCount">
+                    <mat-icon>help</mat-icon>
+                </td-notification-count>
+            </button>
+
+            <button mat-icon-button (click)="markAllAsSeen()" [matMenuTriggerFor]="notificationsMenu" [disabled]="notifications.length <= 0">
+                <td-notification-count [notifications]="unreadNotificationsCount">
+                    <mat-icon>notifications</mat-icon>
+                </td-notification-count>
+            </button>
+            <mat-menu #notificationsMenu="matMenu" [overlapTrigger]="false">
+                <td-menu>
+
+                    <div td-menu-header class="md-subhead">Notifications</div>
+                    <mat-nav-list dense>
+                        <ng-template let-item let-last="last" ngFor [ngForOf]="notifications">
+                            <a mat-list-item (click)="selectNotification(item)" [ngClass]="{'seen' : item.read, 'unread':!item.read}">
+                                <mat-icon mat-list-avatar>today</mat-icon>
+                                <h4 matLine><span class="text-wrap" [innerHTML]="item.description"></span></h4>
+                                <p matLine>{{item.createdAt | timeAgo}}</p>
+                            </a>
+                            <mat-divider *ngIf="!last"></mat-divider>
+                        </ng-template>
+                        <mat-divider *ngIf="hasNext"></mat-divider>
+                        <div style="margin:auto; text-align:center;">
+                            <button (click)="loadMore();$event.stopPropagation()" *ngIf="hasNext" mat-raised-button color="accent" class="push">
+                                    Load more
+                                </button>
+                        </div>
+                    </mat-nav-list>
+                    <!-<button mat-button color="accent" td-menu-footer>
+                            See All Notifications
+                        </button>->
+
+                </td-menu>
+            </mat-menu>
+            <div layout="row" [matMenuTriggerFor]="toolbarMenu1" class="current-user">
+                <img [src]="user?.picture" class="avatar" alt="Shauna">
+                <span hide-xs>{{organizationName}}</span>
+                <mat-icon hide-xs>keyboard_arrow_down</mat-icon>
+            </div>
+            <mat-menu #toolbarMenu1="matMenu" [overlapTrigger]="false">
+                <ng-template tdLoading="organizations.list">
+                    <button mat-menu-item Class="currentOrganization">
+                        <mat-icon>business</mat-icon>
+                        <span>{{organizationName}}</span>
+                    </button>
+                    <ng-template let-item let-last="last" ngFor [ngForOf]="organizations">
+                        <button mat-menu-item (click)="switchOrganization(item)" [ngClass]="{'currentOrganization' : item.id == organizationId, '':item.id != organizationId}">
+                            <mat-icon>business</mat-icon>
+                            <span>{{item.name}}</span>
+                        </button>
+                    </ng-template>
+                    <mat-divider></mat-divider>
+                    <a [routerLink]="['/settings']" mat-menu-item *ngIf="isAdmin$ | async">
+                        <mat-icon>settings</mat-icon>
+                        <span>Settings</span>
+                    </a>
+                    <a [routerLink]="['/profile']" mat-menu-item>
+                        <mat-icon>person</mat-icon>
+                        <span>Edit my Profile</span>
+                    </a>
+                    <button mat-menu-item (click)="logout()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Sign out</span>
+                    </button>
+                </ng-template>
+            </mat-menu>
+        </mat-toolbar>
+        <div flex layout="column" class="content md-content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</mat-sidenav-container> -->

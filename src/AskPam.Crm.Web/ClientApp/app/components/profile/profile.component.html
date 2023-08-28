@@ -1,0 +1,38 @@
+﻿<td-layout-nav-list  navigationRoute="/" [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : ((media.registerQuery('sm') | async) ? 'push' : 'over')"
+    [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '350px' : '100%'">
+
+    <button mat-icon-button td-menu-button tdLayoutToggle>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <div td-sidenav-content>
+        <button mat-icon-button tdLayoutNavListOpen [hideWhenOpened]="true">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <mat-nav-list>
+            <mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/profile']" style="cursor:pointer">
+                <mat-icon>person</mat-icon>Edit my profile
+            </mat-list-item>
+            <mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/profile/password']" style="cursor:pointer">
+                <mat-icon>security</mat-icon>Change my password
+            </mat-list-item>
+            <mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/profile/email']" style="cursor:pointer">
+                <mat-icon>email</mat-icon>Edit my email settings
+            </mat-list-item>
+            <mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/profile/avatar']" style="cursor:pointer">
+                <mat-icon>photo_library</mat-icon>Change my avatar
+            </mat-list-item>
+            <mat-list-item [tdLayoutNavListClose]="!media.query('gt-sm')" [routerLink]="['/profile/notifications']" style="cursor:pointer">
+                <mat-icon>add_alert</mat-icon> Notifications
+            </mat-list-item>
+        </mat-nav-list>
+    </div>
+    <div td-toolbar-content layout="row" layout-align="start center" flex  class="app-toolbar">
+        <button mat-icon-button tdLayoutNavListOpen [hideWhenOpened]="true">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span hide-gt-sm>Profile</span>
+        <app-toolbar flex layout="row"></app-toolbar>
+    </div>
+
+    <router-outlet></router-outlet>
+</td-layout-nav-list>
