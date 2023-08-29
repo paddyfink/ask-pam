@@ -2,6 +2,8 @@
 
 Ask PAM was a cloud-based CRM platform designed specifically for hotels to streamline Concierge operations. By centralizing day-to-day operations and eliminating traditional pen and paper log books, Ask PAM significantly improved the way hotel concierges received, managed, and responded to guest requests. Additionally, it promoted collaboration across departments, ultimately enhancing the overall guest experience.
 
+![Screenshot](img/screenshot_app.png)
+
 ## Technologies Used
 
 Ask PAM was built using the following technologies:
